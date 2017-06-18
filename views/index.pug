@@ -1,5 +1,68 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  style.
+    .features-view {
+      width: 100%;
+      background-color: white;
+    }
+    form {
+      margin-bottom: 0px;
+    }
+    input {
+      cursor: pointer;
+      height: 100%;
+      right: 0;
+      opacity: 0;
+      position: absolute;
+      top: 0;
+      width: 300px;
+      z-index: 4;
+    }
+
+  <div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--3-col">
+      <div class="mdl-card mdl-shadow--2dp">
+        <div class="mdl-card__title">
+          <h2 class="mdl-card__title-text">Training Data</h2>
+        </div>
+        <div class="mdl-card__supporting-text">
+          p Add data for your Nueral Network to train against.
+        </div>
+        <div class="mdl-card__actions mdl-card--border" style="background-color: #{color.scheme.color2}"">
+          <form>
+            <div class="mdl-button mdl-js-button mdl-button--file" style="color: white">Import .CSV File
+              <input type="file" accept=".csv" id="uploadBtn">
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="mdl-cell mdl-cell--2-col">
+      <div class="mdl-shadow--2dp features-view">
+        <div class="mdl-card__title">
+          <h2 class="mdl-card__title-text">Features</h2>
+        </div>
+        <ul class="mdl-list">
+          <li class="mdl-list__item">
+            <button class="mdl-button mdl-js-button mdl-button--icon" style="color: green">
+              <i class="material-icons">check</i>
+            </button>
+            span Height
+          </li>
+          <li class="mdl-list__item">
+            <button class="mdl-button mdl-js-button mdl-button--icon" style="color: green">
+              <i class="material-icons">check</i>
+            </button>
+            span Weight
+          </li>
+          <li class="mdl-list__item">
+            <button class="mdl-button mdl-js-button mdl-button--icon" style="color: green">
+              <i class="material-icons">check</i>
+            </button>
+            span Income
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>

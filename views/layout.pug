@@ -1,7 +1,35 @@
+-
+  const color = {
+    scheme: {
+      color1: "#07889B",
+      color2: "#E37222",
+      color3: "#66B9BF",
+      color4: "#EEAA78"
+    }
+  }
+
+style.
+  body {
+    background-color: #f7f7f7
+  }
+  .mdl-navigation__link {
+    color: white
+  }
+
 doctype html
 html
   head
-    title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
+  title= "Create Net Dashboard"
+  link(rel='stylesheet', href='/stylesheets/mdl-components.css')
+  <link rel="stylesheet" href="/node_modules/material-design-lite/material.min.css">
+  <link rel="stylesheet" href="/node_modules/material-design-icons/iconfont/material-icons.css">
+  <script src="/node_modules/material-design-lite/material.min.js"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  
   body
-    block content
+    <div class="mdl-layout__container mdl-js-layout mdl-layout--fixed-header">
+      include header
+      <main class="mdl-layout__content" style="width:100%">
+        block content
+      </main>
+    </div>
