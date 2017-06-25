@@ -2,14 +2,14 @@ var socket_io = require('socket.io');
 var io = socket_io();
 var socketApi = {};
 
-socket.io = io;
+var socket = io;
 
 io.on('connection', function(socket){
   console.log('A user connected');
 });
 
 socketApi.sendNotification = function() {
-  io.sockets.emit('hello', {msg: 'Hello World!'});
+  socket.sockets.emit('hello', {msg: 'Hello World!'});
 }
 
 module.exports = socket;

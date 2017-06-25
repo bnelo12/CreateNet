@@ -1,0 +1,72 @@
+
+.features-view {
+  width: 100%;
+  background-color: white;
+}
+
+.newtwork-view {
+  width: 100%;
+  background-color: white;
+}
+
+.mdl-data-card {
+  background-color: white;
+}
+
+.mdl-list__item.feature.selected {
+  color: green;
+}
+
+.mdl-list__item .output {
+  color: grey;
+}
+
+.mdl-list__item .feature {
+  color: grey;
+}
+
+.network-view-title {
+  
+}
+
+.mdl-button.mdl-js-button.mdl-button--icon.ui-button {
+  margin-left: 10px;
+  background-color: #07889B;
+  color: white;
+}
+
+.newtwork-view-layers {
+  width: 600px;
+  display: inline-block;
+  vertical-align: top;
+  text-align: center;
+}
+
+.network-view-features {
+  width:200px;
+  display:inline-block;
+  vertical-align: top;
+  margin-left: 20px;
+}
+
+.bracket {
+  margin-top: 5px;
+  border: solid 1px rgba(0, 0, 0, 0.2);
+  border-bottom: 0;
+  height: 4px;
+}
+
+form {
+  margin-bottom: 0px;
+}
+
+input {
+  cursor: pointer;
+  height: 100%;
+  right: 0;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  width: 300px;
+  z-index: 4;
+}

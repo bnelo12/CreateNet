@@ -7,7 +7,7 @@
 var app = require('../app');
 var debug = require('debug')('createnet:server');
 var http = require('http');
-var socketApi = require('../socketApi');
+var socket = require('../sockets/socket');
 
 /**
  * Get port from environment and store in Express.

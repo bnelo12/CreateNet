@@ -1,29 +1,5 @@
 extends layout
-
 block content
-  style.
-    .features-view {
-      width: 100%;
-      background-color: white;
-    }
-    .mdl-data-card {
-      width: 100%;
-      background-color: white;
-    }
-    form {
-      margin-bottom: 0px;
-    }
-    input {
-      cursor: pointer;
-      height: 100%;
-      right: 0;
-      opacity: 0;
-      position: absolute;
-      top: 0;
-      width: 300px;
-      z-index: 4;
-    }
-
   <div class="mdl-grid">
     <div class="mdl-cell mdl-cell--3-col">
       <div class="mdl-data-card mdl-shadow--2dp">
@@ -42,6 +18,34 @@ block content
         </div>
       </div>
     </div>
+    <div class="mdl-cell mdl-cell--12-col">
+      <div class="mdl-shadow--2dp network-view">
+        <div class="mdl-card__title">
+          <h2 class="mdl-card__title-text">Network Design</h2>
+        </div>
+        <div>
+          <span class="network-view-features">
+            <div class="network-view-title">FEATURES</div>
+            <ul class="mdl-list features-list">
+            </ul>
+          </span>
+          <span class=newtwork-view-layers>
+            <div class="network-view-title">
+              span HIDDEN LAYERS
+              <div class="ui-num-hidden-layers" style="display: inline-block">
+                <button class="mdl-button mdl-js-button mdl-button--icon ui-button">
+                  <i class="material-icons material-icons">add</i>
+                </button>
+                <button class="mdl-button mdl-js-button mdl-button--icon ui-button">
+                  <i class="material-icons material-icons">remove</i>
+                </button>
+              </div>
+            </div>
+            <div class="bracket"></div>
+          </span>
+        </div>
+      </div>
+    </div>
     <div class="mdl-cell mdl-cell--4-col">
       <div class="mdl-shadow--2dp features-view">
         <div class="mdl-card__title">
@@ -52,13 +56,16 @@ block content
       </div>
     </div>
     <div class="mdl-cell mdl-cell--4-col">
-      <div class="mdl-shadow--2dp outputs-view">
+      <div class="mdl-shadow--2dp features-view">
         <div class="mdl-card__title">
-          <h2 class="mdl-card__title-text">Features</h2>
+          <h2 class="mdl-card__title-text">Outputs</h2>
         </div>
-        <ul class="mdl-list ouputs-list">
+        <ul class="mdl-list outputs-list">
         </ul>
       </div>
     </div>
   </div>
-  script(src='/javascripts/upload-csv.js')
+  script(src='/javascripts/features.js')
+  script(src='/javascripts/outputs.js')
+  script(src='/javascripts/mlp-project.js')
+  script(src='/javascripts/app.js')
