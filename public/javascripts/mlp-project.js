@@ -8,8 +8,9 @@ var MLPProject = (function($) {
         file_name: '',
         training_to_test_ratio: 0,
         features: null,
-        outputs: null
-      }
+        outputs: null,
+      },
+      network: null
     };
 
     //Event Listeners
@@ -33,8 +34,11 @@ var MLPProject = (function($) {
         type: 'POST',
         data: formData,
         success: (features) => {
-          this.properties.data.features = new Features(JSON.parse(features));
-          this.properties.data.outputs = new Outputs(JSON.parse(features));
+          f = new Features(JSON.parse(features));
+          o = new Outputs(JSON.parse(features));
+          this.properties.data.features = f;
+          this.properties.data.outputs = o;
+          this.properties.network = new Network(f, o);
         },
         cache: false,
         contentType: false,
