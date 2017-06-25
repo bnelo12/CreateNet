@@ -4,5 +4,10 @@ var App = (function() {
     project_type: 'MLPProject',
     project: new MLPProject()
   }
+
+  App.redraw = function() {
+  	this.project._drawNetwork();
+  }
+
   return App
 })();

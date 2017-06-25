@@ -1,4 +1,4 @@
-var MLPProject = (function($) {
+var MLPProject = (function($, d3) {
   //MLPProject model
   var MLPProject = function() {
     //Public properties
@@ -15,13 +15,27 @@ var MLPProject = (function($) {
 
     //Event Listeners
     document.getElementById("csvfile").onchange = () => {this._importCSV()};
-
+    $(document).ready(this.drawNetwork);
   };
 
   //prototype
   MLPProject.prototype = {
 
     constructor: MLPProject,
+
+    _drawNetwork: function() {
+      if (this.properties.network) {
+        this.properties.network._drawNetwork();
+      }
+    },
+
+    _addHiddenLayer() {
+
+    },
+
+    _removeHiddenLayer() {
+
+    },
 
     _importCSV: function() {
       var formData = new FormData();
@@ -39,6 +53,7 @@ var MLPProject = (function($) {
           this.properties.data.features = f;
           this.properties.data.outputs = o;
           this.properties.network = new Network(f, o);
+          this._drawNetwork();
         },
         cache: false,
         contentType: false,
@@ -53,5 +68,5 @@ var MLPProject = (function($) {
  
   return MLPProject;
 
-})($);
+})($, d3);
 

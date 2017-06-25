@@ -9,6 +9,10 @@
   background-color: white;
 }
 
+#network {
+  position: absolute;
+}
+
 .mdl-data-card {
   background-color: white;
 }
@@ -35,6 +39,15 @@
   color: white;
 }
 
+.mdl-button.mdl-js-button.mdl-button--icon.ui-neuron-button {
+  position: absolute;
+  color: white;
+}
+
+.ui-num-neurons {
+  position: absolute;
+}
+
 .newtwork-view-layers {
   width: 600px;
   display: inline-block;
@@ -43,6 +56,13 @@
 }
 
 .network-view-features {
+  width:200px;
+  display:inline-block;
+  vertical-align: top;
+  margin-left: 20px;
+}
+
+.network-view-outputs {
   width:200px;
   display:inline-block;
   vertical-align: top;
