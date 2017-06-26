@@ -4,8 +4,9 @@
   background-color: white;
 }
 
-.newtwork-view {
+.mdl-shadow--2dp.newtwork-view {
   width: 100%;
+  height: 500px;
   background-color: white;
 }
 
@@ -67,6 +68,7 @@
   display:inline-block;
   vertical-align: top;
   margin-left: 20px;
+  float: right;
 }
 
 .bracket {

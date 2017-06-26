@@ -34,6 +34,30 @@ var Network = (function (d3) {
         for (var i = 0; i < this.properties.num_hidden_layers; i++) {
           this.properties.hidden_layers[i].drawHiddenLayer(layerScale(i), i);
         }
+        this._drawLinks(container);
+    },
+
+    _drawLinks: function(container) {
+      let svg = d3.select("#svg");
+      for (var i = 0; i < this.properties.num_hidden_layers-1; i++) {
+        for (var j = 0; j < this.properties.hidden_layers[i].properties.num_neurons; j++) {
+          for (var k = 0; k < this.properties.hidden_layers[i+1].properties.num_neurons; k++) {
+            let cx1 = this.properties.hidden_layers[i].properties.neurons[j].properties.cx-10;
+            let cy1 = this.properties.hidden_layers[i].properties.neurons[j].properties.cy;
+            let cx2 = this.properties.hidden_layers[i+1].properties.neurons[k].properties.cx-10;
+            let cy2 = this.properties.hidden_layers[i+1].properties.neurons[k].properties.cy;
+            let line = d3.path()
+            line.moveTo(cx1, cy1);
+            line.bezierCurveTo(cx1+(cx2-cx1)/2, cy1, cx2-(cx2-cx1)/2, cy2, cx2, cy2);
+            container.insert("path", ":first-child")
+              .attr("d", line.toString())
+              .attr("stroke", "grey")
+              .attr("fill", "none")
+              .attr("stroke-dasharray", "5,5")
+              .attr("stroke-width", "1");
+          }
+        }
+      }
     },
 
     _addHiddenLayer: function() {
@@ -43,7 +67,6 @@ var Network = (function (d3) {
     },
 
     _removeHiddenLayer: function() {
-      console.log("Hello");
       this.properties.num_hidden_layers--;
       this.properties.hidden_layers.pop();
       App.redraw();

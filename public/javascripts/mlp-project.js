@@ -15,7 +15,6 @@ var MLPProject = (function($, d3) {
 
     //Event Listeners
     document.getElementById("csvfile").onchange = () => {this._importCSV()};
-    $(document).ready(this.drawNetwork);
   };
 
   //prototype
@@ -27,14 +26,6 @@ var MLPProject = (function($, d3) {
       if (this.properties.network) {
         this.properties.network._drawNetwork();
       }
-    },
-
-    _addHiddenLayer() {
-
-    },
-
-    _removeHiddenLayer() {
-
     },
 
     _importCSV: function() {
@@ -54,6 +45,7 @@ var MLPProject = (function($, d3) {
           this.properties.data.outputs = o;
           this.properties.network = new Network(f, o);
           this._drawNetwork();
+          d3.select("#data-cell").remove();
         },
         cache: false,
         contentType: false,
