@@ -9,7 +9,6 @@ var Network = (function (d3) {
     for (var v = 0; v < this.properties.num_hidden_layers; v++) {
       this.properties.hidden_layers.push(new HiddenLayer(2));
     }
-
     d3.select('#add-hidden-layer').on("click", () => {this._addHiddenLayer()})
     d3.select('#remove-hidden-layer').on("click", () => {this._removeHiddenLayer()})
   };
@@ -60,16 +59,30 @@ var Network = (function (d3) {
       }
     },
 
+    _startLinkAnimation: function() {
+      let paths = d3.selectAll("path");
+      paths.classed("animated", true);
+    },
+
+    _stopLinkAnimation: function() {
+      let paths = d3.selectAll("path");
+      paths.classed("animated", false);
+    },
+
     _addHiddenLayer: function() {
-      this.properties.num_hidden_layers++;
-      this.properties.hidden_layers.push(new HiddenLayer(2));
-      App.redraw();
+      if (this.properties.num_hidden_layers < 13) {
+        this.properties.num_hidden_layers++;
+	      this.properties.hidden_layers.push(new HiddenLayer(2));
+	      App.redraw();
+      }
     },
 
     _removeHiddenLayer: function() {
-      this.properties.num_hidden_layers--;
-      this.properties.hidden_layers.pop();
-      App.redraw();
+      if (this.properties.num_hidden_layers > 0) {
+        this.properties.num_hidden_layers--;
+        this.properties.hidden_layers.pop();
+        App.redraw();
+      }
     },
 
   }

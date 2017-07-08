@@ -10,11 +10,13 @@ var MLPProject = (function($, d3) {
         features: null,
         outputs: null,
       },
-      network: null
+      network: null,
+      isRunning: false
     };
 
     //Event Listeners
     document.getElementById("csvfile").onchange = () => {this._importCSV()};
+    d3.select('#network-run-button').on("click", () => {this._runClicked()})
   };
 
   //prototype
@@ -55,6 +57,31 @@ var MLPProject = (function($, d3) {
       $('.mdl-upload-csv-card').html('<div id="p2" class="mdl-progress mdl-js-progress mdl-progress__indeterminate"></div>');
       $('.mdl-upload-csv-card').css("background-color", "white");
       componentHandler.upgradeElements($('.mdl-upload-csv-card'));
+    },
+
+    _runClicked: function() {
+      // Start Training
+      if (!this.properties.isRunning && this.properties.network) {
+        this._run();
+      }
+      // Stop Training
+      else if (this.properties.network) {
+        this._stop();
+      }
+    },
+
+    _run: function() {
+      d3.select('#network-run-button').select('button').select('i')
+        .text('stop');
+      this.properties.network._startLinkAnimation();
+      this.properties.isRunning = true;
+    },
+
+    _stop: function() {
+      d3.select('#network-run-button').select('button').select('i')
+        .text('play_arrow');
+      this.properties.network._stopLinkAnimation();
+      this.properties.isRunning = false;
     }
   }
  
