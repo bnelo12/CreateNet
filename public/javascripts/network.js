@@ -21,14 +21,15 @@ var Network = (function (d3) {
       d3.select("#hidden-layers-title").text(`${this.properties.num_hidden_layers} HIDDEN LAYERS`)
       let co = d3.select(".network-view-outputs").node();
         let cf = d3.select(".network-view-features").node();
-        let width = co.offsetLeft - cf.offsetLeft;
+        let output_width = 200;
+        let width = co.offsetLeft - cf.offsetLeft + output_width;
         svg.attr("width", width);
         let container = svg.append("g")
           .classed("core", true)
         let featureWidth = 200;
         let layerScale = d3.scalePoint()
           .domain(d3.range(0, this.properties.num_hidden_layers))
-          .range([featureWidth+50, width-50])
+          .range([featureWidth+50, width-100-output_width])
           .round(true);
         for (var i = 0; i < this.properties.num_hidden_layers; i++) {
           this.properties.hidden_layers[i].drawHiddenLayer(layerScale(i), i);
@@ -84,6 +85,15 @@ var Network = (function (d3) {
         App.redraw();
       }
     },
+
+    _bundleNetwork: function() {
+      var bundle = {};
+      bundle['num_hidden_layers'] = this.properties.num_hidden_layers;
+      bundle['hidden_layers'] = this.properties.hidden_layers.map((hidden_layer) => {
+        return hidden_layer._bundleHiddenLayer();
+      });
+      return bundle;
+    }
 
   }
 

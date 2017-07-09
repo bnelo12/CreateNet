@@ -55,6 +55,12 @@ var HiddenLayer = (function (d3, $) {
         this.properties.neurons.pop();
         App.redraw();
       }
+    },
+
+    _bundleHiddenLayer: function() {
+      bundle = {};
+      bundle['num_neurons'] = this.properties.num_neurons;
+      return bundle;
     }
   }
 

@@ -80,6 +80,15 @@
   height: 4px;
 }
 
+.foreignObject {
+    font: 9px sans-serif;
+    text-overflow: ellipsis;
+    text-align: left;
+    word-wrap: break-word;
+    height: 100px;
+    width: 100px;
+}
+
 form {
   margin-bottom: 0px;
 }
@@ -97,8 +106,8 @@ input {
 
 path.animated {
   stroke-dasharray: 5;
-  stroke-dashoffset: 200;
-  animation: dash 5s linear forwards;
+  stroke-dashoffset: 50;
+  animation: dash 1s linear forwards;
   animation-iteration-count: infinite;
 }
 

@@ -40,4 +40,12 @@ router.post('/csv-upload', function(req, res, next) {
   });
 });
 
+router.post('/network-upload', function(req, res, next) {
+  var network = req.body.network;
+  fs.writeFile('public/user-data/network.nn', network, function (err) {
+    if (err) return console.log(err);
+    console.log('req.body > public/user-data/network.nn')
+  });
+  res.end();
+});
 module.exports = router;

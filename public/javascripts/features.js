@@ -1,35 +1,64 @@
-var Features = (function ($) {
-  
-  var _buildFeatureHtml = function(feature) {
-    return `
-      <li class="feature selected" id=`+ feature + `>
-        <button class="mdl-button mdl-js-button mdl-button--icon">
-          <i class="material-icons material-icons">check</i>
-        </button>
-        <span>` + feature + `</span>
-      </li>
-    `;
-  }
-
-  var _appendFeatureToFeatureList = function(feature) {
-    $('.features-list').append(
-      _buildFeatureHtml(feature)
-    );
-  }
+var Features = (function (d3) {
 
  var Features = function(feature_list) {
     this.properties = {
-      all: feature_list,
-      selected_features: feature_list
+      num_features: feature_list.length,
+      features: feature_list.map((feature) => {
+        return {
+          name: feature,
+          enabled: true
+        }
+      })
     };
-    feature_list.forEach((feature) => {
-        _appendFeatureToFeatureList(feature);
-    });
+    this._drawFeatures();
   }
   
   Features.prototype = {
+    _drawFeatures: function() {
+      let container = d3.select("#svg").select("g");
+      for (var i = 0; i < this.properties.features.length; i++) {
+        let feature = this.properties.features[i];
+        let row = container.append('svg')
+          .attr('x', 0)
+          .attr('y', i*50 + 80)
+          .attr('width', 150)
+          .attr('height', 40)
+          .on('mouseover', function(d) {
+            row.style('cursor', 'pointer')
+          })
+          .on('click', () => {
+            if (feature.enabled) {
+              feature.enabled = false;
+            }
+            else {
+              feature.enabled = true;
+            }
+            App.redraw();
+          });
+        row.append('rect')
+          .attr('x', 0)
+          .attr('y', 0)
+          .attr('width', 150)
+          .attr('height', 40)
+        if (feature.enabled) {
+          row.select('rect').attr('style', 'fill:#66B9BF;');
+        }
+        else {
+          row.select('rect').attr('style', 'fill:lightgrey;');
+        }
+        row.append('text')
+          .attr('x', 5)
+          .attr('y', 24)
+          .attr('style', 'fill:white;')
+          .text(this.properties.features[i].name)
+      }
+    },
+
+    _bundleFeatures: function() {
+      return this.properties;
+    }
 
   }
 
   return Features;
-})($);
+})(d3);
