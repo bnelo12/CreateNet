@@ -2,6 +2,7 @@ var express = require('express');
 var formidable = require('formidable');
 var fs = require('fs');
 var fl = require('first-line')
+const spawn = require('child_process').spawn;
 var router = express.Router();
 
 /* GET home page. */
@@ -40,11 +41,20 @@ router.post('/csv-upload', function(req, res, next) {
   });
 });
 
+
 router.post('/network-upload', function(req, res, next) {
   var network = req.body.network;
   fs.writeFile('public/user-data/network.nn', network, function (err) {
     if (err) return console.log(err);
     console.log('req.body > public/user-data/network.nn')
+    run_network = spawn('compute/env/bin/python', ['compute/classifier.py', 'public/user-data/network.nn'])
+    run_network.stdout.on('data', (data) => {
+      console.log(`stdout: ${data}`);
+    });
+
+    run_network.stderr.on('data', (data) => {
+      console.log(`stderr: ${data}`);
+    });
   });
   res.end();
 });

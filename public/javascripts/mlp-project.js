@@ -134,6 +134,7 @@ var MLPProject = (function($, d3) {
       d3.select('#network-run-button').select('button').select('i')
         .text('stop');
       this.properties.network._startLinkAnimation();
+      this._post_network();
       this.properties.isRunning = true;
     },
 
